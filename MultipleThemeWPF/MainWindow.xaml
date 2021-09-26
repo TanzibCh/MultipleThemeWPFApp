@@ -1,0 +1,78 @@
+﻿<Window x:Class="MultipleThemeWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultipleThemeWPF"
+        xmlns:properties="clr-namespace:MultipleThemeWPF.Properties"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <UniformGrid Rows="2"
+                     Margin="5">
+            <!--Buttons-->
+            <StackPanel
+                Orientation="Horizontal">
+                <Button
+                    Content="Primary"
+                    Style="{DynamicResource PrimaryButtonStyle}" />
+                <Button
+                    Content="Secondery"
+                    Style="{DynamicResource SeconderyButtonStyle}"
+                    Margin="20 0" />
+                <Button
+                    Content="Submit"
+                    Style="{DynamicResource SubmitButtonStyle}" />
+            </StackPanel>
+
+            <!--Menu Button-->
+            <StackPanel
+                Orientation="Vertical"
+                Margin="0 10">
+                <RadioButton
+                    Content="Menu Button one"
+                    Margin="0 2"
+                    GroupName="Menu"
+                    IsChecked="True"
+                    Style="{DynamicResource MenuButtonStyle}" />
+                <RadioButton
+                    Content="Menu Button two"
+                    Margin="0 2"
+                    GroupName="Menu"
+                    Style="{DynamicResource MenuButtonStyle}" />
+                <RadioButton
+                    Content="Menu Button three"
+                    Margin="0 2"
+                    GroupName="Menu"
+                    Style="{DynamicResource MenuButtonStyle}" />
+            </StackPanel>
+        </UniformGrid>
+
+        <Grid Grid.Column="1">
+            <StackPanel Orientation="Vertical"
+                        Margin="5">
+                <ComboBox
+                    x:Name="ThemeSelectorCB"
+                    SelectedValuePath="Content"
+                    SelectedValue="{Binding CurrentTheme, Source={x:Static 
+                    properties:Settings.Default}, Mode=OneWay}">
+                    <ComboBoxItem
+                        Content="Default" />
+                    <ComboBoxItem
+                        Content="Flat" />
+                    <ComboBoxItem
+                        Content="Modern" />
+                </ComboBox>
+                <Button
+                    Content="Appely Style"
+                    Margin="0 5"
+                    Style="{DynamicResource SubmitButtonStyle}"
+                    Click="Button_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
